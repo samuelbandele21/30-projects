@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Caveat', cursive;
+    font-family: 'Indie Flower', cursive;
+}
+body{
+    background-image: url(imgs/bibleBG.jpg);
+    background-size: cover;
+}
+
+.container{
+    width: 400px;
+    max-width: 600px;
+    background: whitesmoke;
+    margin: 10% auto;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.container h2{
+    position: relative;
+}
+.container h2::after{
+    content: "";
+    background: blue;
+    width: 40px;
+    height: 2px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+.quote{
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.verse{
+    text-align: right;
+    color: blueviolet;
+    position: relative;
+}
+
+.btns{
+    display: flex;
+    align-items: center;
+}
+#new{
+    background: blue;
+    color: white;
+    font-family: cursive;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+   margin-left: auto;
+}
+#share{
+    background: blue;
+    color: white;
+    font-family: cursive;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+}

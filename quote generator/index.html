@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quotes</title>
+
+    <link rel="stylesheet" href="quote.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Verse of the day</h2>
+        <div class="quote">Just a sample</div>
+        <div class="verse">
+            <span>---  </span><span class="refer">from?</span>
+        </div>
+        <div class="btns">
+            <button id="new" onclick="getVerse()">New Quote</button>
+            <button id="share">share</button>
+        </div>
+    </div>
+
+
+    <script>
+        const verseUrl = "https://labs.bible.org/api/?passage=random"
+        let quote = document.querySelector(".quote")
+        let refer = document.querySelector(".refer")
+        let share = document.getElementById("share")
+
+        getVerse()
+        async function getVerse() {
+            const response = await fetch(verseUrl)
+        
+            var data = await response.text()
+
+            let splitVerse = data.split("<b>").join("*").split("</b>").join("*").split("*")
+
+            quote.innerHTML = splitVerse[2]
+            refer.innerHTML = splitVerse[1]
+
+        }
+
+        share.addEventListener('click', ()=>{
+
+            const whatsAppURL = `https://wa.me?text=${encodeURIComponent(quote.innerHTML)}%20${encodeURIComponent(refer.innerHTML)}`;
+            window.open(whatsAppURL)
+        })
+
+
+
+    </script>
+</body>
+</html>
