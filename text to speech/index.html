@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to speech</title>
+    <link rel="stylesheet" href="speech.css">  
+    <script src="https://kit.fontawesome.com/5f978e769c.js" crossorigin="anonymous"></script>
+ 
+
+</head>
+<body>
+    <div class="contain">
+        <h1>Text to speech <span>converter</span></h1>
+        <textarea placeholder="Write your text here"></textarea>
+        <div class="row">
+            <select></select>
+            <button id="button"><i class="fa-solid fa-play"></i>Listen</button>
+        </div>
+    </div>
+
+    <script>
+        let button = document.querySelector("button")
+        let speech = new SpeechSynthesisUtterance();
+
+        let voices = []
+
+        let voiceSelect = document.querySelector("select")
+
+
+        //adding voices from pc to select drop down
+        window.speechSynthesis.onvoiceschanged = ()=>{
+            voices = window.speechSynthesis.getVoices()  //get voices on the pc and add to the voice array
+            speech.voice = voices[0]  //set the 1st voice as the default
+
+            voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)))
+        }
+
+        //read with the select voice
+        voiceSelect.addEventListener('change', () => {
+            speech.voice = voices[voiceSelect.value]
+        })
+
+
+        //Js for the listen button
+        button.addEventListener('click', () =>{
+            speech.text = document.querySelector("textarea").value
+            window.speechSynthesis.speak(speech)
+        })
+        
+
+    </script>
+</body>
+</html>
